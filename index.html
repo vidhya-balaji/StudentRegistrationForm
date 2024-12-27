@@ -114,6 +114,9 @@
 		}
 
         function FormValidation(prop){
+            var namevalid=true
+            var emailvalid=true;
+            var pwdvalid = true;
             var name = document.getElementById("name").value
             var email = document.getElementById("E-mail").value   
             var password = document.getElementById("password").value
@@ -122,30 +125,37 @@
            
                 if(name == '' || name == undefined){
                     if(prop == 'name'){
-                        alert('Please enter name.');                 
-                    }
-                    document.getElementById("addbtn").disabled = true; 
-                    return false;
+                        alert('Please enter name.');  
+                        document.getElementById("addbtn").disabled = true;
+                        return false;               
+                    }                   
+                    namevalid=false
                 }
                     
                 if(!Emailvalidation(email)){
                     if(prop == 'email'){                 
-                        alert('Please enter valid email.');   
-                    }
-                    document.getElementById("addbtn").disabled = true;
-                    return false;
+                        alert('Please enter valid email.'); 
+                        document.getElementById("addbtn").disabled = true;
+                        return false;  
+                    }                 
+                    emailvalid=false
+                   
                 }
            
                 var password = document.getElementById("password").value
                 if(password.length < 6){
                     if(prop == 'password'){
                         alert('Password is too short.');
-                    }
-                    document.getElementById("addbtn").disabled = true;
-                    return false;
+                        document.getElementById("addbtn").disabled = true;
+                        return false;
+                    }                
+                    pwdvalid=false
+                    
                 }
-
-            document.getElementById("addbtn").disabled = false;
+                if(namevalid == true && emailvalid == true && pwdvalid == true){
+                    document.getElementById("addbtn").disabled = false;
+                }
+                        
         }
 
         function Emailvalidation(email) {
