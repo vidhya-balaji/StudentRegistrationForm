@@ -1,0 +1,41 @@
+body{
+    padding: 10px;
+}
+h1{
+    text-align: center;
+}
+#studenttable{
+    margin: 50px  620px;
+    height: 180px;
+    width: 250px;
+    border:solid gray 2px;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: center;
+}
+#studenttable td{
+    border:solid gray 2px;
+
+}
+#addbtn{
+    cursor:pointer;
+    width: 230px;
+}
+#course{
+    width: 170px;
+}
+
+#studentdetails{
+    margin: 10px  550px 100px;
+    height: 50px;
+    width: 400px;
+    border:solid gray 2px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+#studentdetails th{
+    border:solid gray 2px;
+
+}

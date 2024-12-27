@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <form id="studentform">
+            <h1>Student Form</h1>
+            <table id="studenttable">
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" id="name"> </td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td><input type="text" id="age"> </td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td id="gender">
+                        <input type="radio" id="male" value="Male">Male
+                        <input type="radio" id="female" value="Female">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Courses</td>
+                    <td><select id="course">
+                            <option value="js">JavaScript</option>
+                            <option value="html">HTML</option>
+                            <option value="Css">css</option>
+                            <option value="React">React</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-mail</td>
+                    <td><input type="text" id="E-mail"> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button id="addbtn" onclick="addDetails()">Add</button></td>
+                </tr>
+            </table>
+        </form>
+        <form id="studentdetailsform">
+            <table id="studentdetails">
+                <tr>
+                    <th>NAME</th>
+                    <th>AGE</th>
+                    <th>COURSES</th>
+                    <th>GENDER</th>
+                    <th>E-Mail</th>
+                    <th>ACTION</th>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+
+        function addDetails() {
+            var name = document.getElementById("name").value
+            var age = document.getElementById("age").value
+            var gender = document.getElementById("gender").value
+            var course = document.getElementById("course").textContent
+            var email = document.getElementById("E-mail").value
+            console.log(name)
+            var tr = document.createElement("tr")
+            var name1 = tr.appendChild(document.createElement('td'))
+            var age1 = tr.appendChild(document.createElement('td'))
+            var gender1 = tr.appendChild(document.createElement('td'))
+            var course1 = tr.appendChild(document.createElement('td'))
+            var email1 = tr.appendChild(document.createElement('td'))
+            var delete1 = tr.appendChild(document.createElement('td'))
+            name1.textContent = name
+            age1.textContent = age
+            gender1.textContent = gender
+            course1.textContent = course
+            email1.textContent = email
+            delete1.textContent = "<button id='remove'>Remove</button>"
+        }
+
+    </script>
+</body>
+
+</html>
