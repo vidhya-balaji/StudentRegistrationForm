@@ -20,8 +20,11 @@ h1{
 
 }
 #addbtn{
+    background-color: rgb(110, 110, 160);
     cursor:pointer;
     width: 230px;
+    color:white;
+    border-radius: 10px;
 }
 #course{
     width: 170px;
