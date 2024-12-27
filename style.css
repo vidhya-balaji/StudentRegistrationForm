@@ -6,13 +6,14 @@ h1{
 }
 #studenttable{
     margin: 50px  620px;
-    height: 180px;
-    width: 250px;
+    /* height: 180px;
+    width: 250px; */
     border:solid gray 2px;
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
     justify-content: center;
+    width: fit-content;
 }
 #studenttable td{
     border:solid gray 2px;
@@ -28,14 +29,19 @@ h1{
 
 #studentdetails{
     margin: 10px  550px 100px;
-    height: 50px;
-    width: 400px;
+    /* height: 50px;
+    width: 400px; */
     border:solid gray 2px;
     display: grid;
     align-items: center;
     justify-content: center;
+    width: fit-content;
 }
-#studentdetails th{
+#studentdetails th,td{
     border:solid gray 2px;
+    /* white-space: nowrap; */
 
 }
+/* #studentdetails td{
+    border:solid gray 2px;
+} */

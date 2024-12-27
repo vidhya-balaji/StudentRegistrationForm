@@ -15,22 +15,23 @@
             <table id="studenttable">
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" id="name"> </td>
+                    <td><input type="text" id="name" onchange="FormValidation('name')"> </td>
                 </tr>
                 <tr>
                     <td>Age</td>
-                    <td><input type="text" id="age"> </td>
+                    <td><input type="number" id="age"> </td>
                 </tr>
                 <tr>
                     <td>Gender</td>
-                    <td id="gender">
-                        <input type="radio" id="male" value="Male">Male
-                        <input type="radio" id="female" value="Female">Female
+                    <td>
+                        <input type="radio" id="male" value="Male" name="gender">Male
+                        <input type="radio" id="female" value="Female" name="gender">Female
                     </td>
                 </tr>
                 <tr>
                     <td>Courses</td>
                     <td><select id="course">
+                            <option value="">Select</option>
                             <option value="js">JavaScript</option>
                             <option value="html">HTML</option>
                             <option value="Css">css</option>
@@ -40,23 +41,30 @@
                 </tr>
                 <tr>
                     <td>E-mail</td>
-                    <td><input type="text" id="E-mail"> </td>
+                    <td><input type="email" id="E-mail" onchange="FormValidation('email')"> </td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button id="addbtn" onclick="addDetails()">Add</button></td>
+                    <td>Password</td>
+                    <td><input type="text" id="password" onchange="FormValidation('password')"> </td>
                 </tr>
-            </table>
+                <tr>
+                    <td colspan="2"><button type="button" id="addbtn" onclick="addDetails()" disabled>Add</button></td>
+                </tr>
+            </table>    
         </form>
         <form id="studentdetailsform">
             <table id="studentdetails">
-                <tr>
-                    <th>NAME</th>
-                    <th>AGE</th>
-                    <th>COURSES</th>
-                    <th>GENDER</th>
-                    <th>E-Mail</th>
-                    <th>ACTION</th>
-                </tr>
+               
+                <tbody>
+                    <tr>
+                        <th>NAME</th>
+                        <th>AGE</th>
+                        <th>COURSES</th>
+                        <th>GENDER</th>
+                        <th>E-Mail</th>
+                        <th>ACTION</th>
+                    </tr>
+                </tbody>
             </table>
         </form>
     </div>
@@ -65,10 +73,15 @@
         function addDetails() {
             var name = document.getElementById("name").value
             var age = document.getElementById("age").value
-            var gender = document.getElementById("gender").value
-            var course = document.getElementById("course").textContent
+            var gender = document.querySelector('input[name="gender"]:checked')?.value //Get radio value by queryselect
+			
+			//If you want to get selected option value use ".value"
+            var course = document.getElementById("course").selectedOptions[0].textContent
             var email = document.getElementById("E-mail").value
-            console.log(name)
+            var password = document.getElementById("password").value
+           
+           
+
             var tr = document.createElement("tr")
             var name1 = tr.appendChild(document.createElement('td'))
             var age1 = tr.appendChild(document.createElement('td'))
@@ -78,12 +91,67 @@
             var delete1 = tr.appendChild(document.createElement('td'))
             name1.textContent = name
             age1.textContent = age
-            gender1.textContent = gender
-            course1.textContent = course
+            gender1.textContent = gender != undefined ? gender : '';
+            course1.textContent = course == 'Select' ? '' : course
             email1.textContent = email
-            delete1.textContent = "<button id='remove'>Remove</button>"
+            delete1.innerHTML = "<button type='button' id='remove' onclick='removeRow(this)'>Remove</button>" // HTML element should insert using innerHTML, If we use textContent it taked as text
+			
+			//Get table body element
+			 var tablebody = document.getElementById("studentdetails").getElementsByTagName('tbody')[0];
+			 
+			 //Insert TR to the table body
+			 tablebody.appendChild(tr);
+			 
+			 clearForm();
         }
 
+		function removeRow(row){
+			row.closest('tr').remove()
+		}
+		function clearForm(){
+		   var frm = document.getElementById('studentform');
+		   frm.reset();  // Reset all form data
+		}
+
+        function FormValidation(prop){
+            var name = document.getElementById("name").value
+            var email = document.getElementById("E-mail").value   
+            var password = document.getElementById("password").value
+
+            
+           
+                if(name == '' || name == undefined){
+                    if(prop == 'name'){
+                        alert('Please enter name.');                 
+                    }
+                    document.getElementById("addbtn").disabled = true; 
+                    return false;
+                }
+                    
+                if(!Emailvalidation(email)){
+                    if(prop == 'email'){                 
+                        alert('Please enter valid email.');   
+                    }
+                    document.getElementById("addbtn").disabled = true;
+                    return false;
+                }
+           
+                var password = document.getElementById("password").value
+                if(password.length < 6){
+                    if(prop == 'password'){
+                        alert('Password is too short.');
+                    }
+                    document.getElementById("addbtn").disabled = true;
+                    return false;
+                }
+
+            document.getElementById("addbtn").disabled = false;
+        }
+
+        function Emailvalidation(email) {
+        const patt = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
+        return patt.test(email);
+        }
     </script>
 </body>
 
